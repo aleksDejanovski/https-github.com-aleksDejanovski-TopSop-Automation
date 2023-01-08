@@ -2,9 +2,9 @@
 
 namespace AutomationTestProject
 {
-    internal class Homepage
+    internal class Homepage : BaseClass
     {
-        private IWebDriver driver;
+        private IWebDriver driver { get; set; }
 
         public Homepage(IWebDriver driver)
         {
@@ -15,10 +15,22 @@ namespace AutomationTestProject
 
         public IWebElement TitleDomacinstvo => driver.FindElement(By.CssSelector("div[class='page-title category-title clearfix'] h1"));
 
-        public void DomacinstvoKlik()
+        //element kujna
+        public IWebElement Kujna => driver.FindElement(By.XPath("//span[contains(text(),'Kујна')]"));
+
+        //dokaz deka e kliknata kujna
+        public IWebElement KujnaKliknata => driver.FindElement(By.CssSelector("div[class='page-title category-title clearfix'] h1"));
+
+
+        public DomacinstvoPage DomacinstvoKlik()
         {
             Domacinstvo.Click();
+            return new DomacinstvoPage(driver);
         }
-
+        public KujnaPage KujnaKlik()
+        {
+            Kujna.Click();
+            return new KujnaPage(driver);
+        }
     }
 }

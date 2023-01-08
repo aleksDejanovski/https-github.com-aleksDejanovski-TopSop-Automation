@@ -10,33 +10,43 @@ using OpenQA.Selenium.Chrome;
 namespace AutomationTestProject
 {
     [TestFixture]
-    public class TestCases
-    {
-        IWebDriver driver;
-        string webpage = "https://www.topshop.com.mk/";
-        Homepage page;
+    public class TestCases : BaseClass
 
-        [SetUp]
-        public void setiranje()
-        {
-            driver = new ChromeDriver();
-            driver.Navigate().GoToUrl(webpage);
-            driver.Manage().Window.Maximize();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
-            page = new Homepage(driver);
-        }
-        [TearDown]
-        public void tearDown()
-        {
-            driver.Quit();
-            driver.Dispose();
-        }
+    {
         [Test]
-        public void frontPageElements()
+        public void DomacinstvoElements()
         {
+            Homepage page = new Homepage(driver);
             page.DomacinstvoKlik();
             Assert.IsTrue(page.TitleDomacinstvo.Text.Contains("Домаќинство"));
         }
+        [Test]
+        public void KujnaElement()
+        {
+            Homepage page = new Homepage(driver);
+            page.KujnaKlik();
+            Assert.IsTrue(page.KujnaKliknata.Text.Contains("Kујна"));
+        }
+        [Test]
+        public void ElektricniAparati()
+        {
+            Homepage page = new Homepage(driver);
+            page.KujnaKlik();
+            KujnaPage pageKujna = new KujnaPage(driver);
+            pageKujna.ElektrickiAparatiClick();
+            Assert.AreEqual("Електрични апарати", pageKujna.OtvoreniElektricni.Text);
+        }
+        [Test]
+        public void SpalnaImaElementi()
+        {
+            Homepage page = new Homepage(driver);
+            page.DomacinstvoKlik();
+            DomacinstvoPage pageDomacinstvo = new DomacinstvoPage(driver);
+            pageDomacinstvo.SpalnaClick();
+            Assert.IsTrue(driver.Url.Contains("spalna"));
+            
+        }
     }
-
 }
+
+

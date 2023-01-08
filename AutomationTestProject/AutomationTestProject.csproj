@@ -59,7 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutomationTestProject.cs" />
+    <Compile Include="BaseClass.cs" />
+    <Compile Include="BaseTest.cs" />
+    <Compile Include="DomacinstvoPage.cs" />
     <Compile Include="Homepage.cs" />
+    <Compile Include="KujnaPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
