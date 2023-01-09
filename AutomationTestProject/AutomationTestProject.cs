@@ -44,7 +44,35 @@ namespace AutomationTestProject
             DomacinstvoPage pageDomacinstvo = new DomacinstvoPage(driver);
             pageDomacinstvo.SpalnaClick();
             Assert.IsTrue(driver.Url.Contains("spalna"));
-            
+
+        }
+        [Test]
+        public void RegistracijaUserSeOtvara()
+        {
+            Homepage page = new Homepage(driver);
+            page.DomacinstvoKlik();
+            page.registracijaKlik();
+            RegistracijaPage pageRegis = new RegistracijaPage(driver);
+            Assert.IsTrue(pageRegis.PageTitleDokaz.Text.Contains("Креирајте корисничка сметка"));
+        }
+        [Test]
+        public void Registracijaforma()
+        {
+            Homepage page = new Homepage(driver);
+            page.DomacinstvoKlik();
+            page.registracijaKlik();
+            RegistracijaPage pageRegis = new RegistracijaPage(driver);
+            pageRegis.EnterName("Aleksandar");
+            pageRegis.EnterSurname("Damjanovski");
+            pageRegis.EnterEmail("denkovski112a@yahoo.com");
+            pageRegis.EnterAdress("Ulica 12 broj 2");
+            pageRegis.EnterPostenski("1300");
+            //pageRegis.EnterCity("Kumanovo");
+            pageRegis.EnterPhone("070648549");
+            pageRegis.EnterPass("acecar");
+            pageRegis.EnterPassConf("acecar");
+            pageRegis.RegistrationClick();
+            Assert.AreEqual("Ви благодариме што се регистриравте.", pageRegis.RegistrationSuccess.Text);
         }
     }
 }

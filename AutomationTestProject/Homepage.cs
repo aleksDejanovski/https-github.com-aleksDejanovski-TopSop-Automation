@@ -21,7 +21,11 @@ namespace AutomationTestProject
         //dokaz deka e kliknata kujna
         public IWebElement KujnaKliknata => driver.FindElement(By.CssSelector("div[class='page-title category-title clearfix'] h1"));
 
+        //Element da se klikne registracija/login
+        public IWebElement Registracija => driver.FindElement(By.CssSelector(".sign-in.header-over-block.top-nav-shadow "));
 
+        // registrirajse kopce
+        public IWebElement RegistracijaKopce => driver.FindElement(By.CssSelector("a[title='Register ']"));
         public DomacinstvoPage DomacinstvoKlik()
         {
             Domacinstvo.Click();
@@ -31,6 +35,12 @@ namespace AutomationTestProject
         {
             Kujna.Click();
             return new KujnaPage(driver);
+        }
+        public RegistracijaPage registracijaKlik()
+        {
+            Registracija.Click();
+            RegistracijaKopce.Click();
+            return new RegistracijaPage(driver);
         }
     }
 }
