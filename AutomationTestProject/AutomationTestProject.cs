@@ -58,13 +58,16 @@ namespace AutomationTestProject
         [Test]
         public void Registracijaforma()
         {
+            Random rnd = new Random();
+            int num = rnd.Next();
+            string userName1 = "denkovski112" + num * 10000 + "a@yahoo.com";
             Homepage page = new Homepage(driver);
             page.DomacinstvoKlik();
             page.registracijaKlik();
             RegistracijaPage pageRegis = new RegistracijaPage(driver);
             pageRegis.EnterName("Aleksandar");
             pageRegis.EnterSurname("Damjanovski");
-            pageRegis.EnterEmail("denkovski112a@yahoo.com");
+            pageRegis.EnterEmail(userName1);
             pageRegis.EnterAdress("Ulica 12 broj 2");
             pageRegis.EnterPostenski("1300");
             //pageRegis.EnterCity("Kumanovo");
@@ -72,7 +75,17 @@ namespace AutomationTestProject
             pageRegis.EnterPass("acecar");
             pageRegis.EnterPassConf("acecar");
             pageRegis.RegistrationClick();
-            Assert.AreEqual("Ви благодариме што се регистриравте.", pageRegis.RegistrationSuccess.Text);
+            Assert.AreEqual("Ви благодариме што се регистриравте.", pageRegis.RegistrationSuccess.Text, "The User Is Not Registered");
+        }
+        [Test]
+        public void LoginForma()
+        {
+            Homepage page = new Homepage(driver);
+            page.NajavaClick();
+            LoginPage pageLogin = new LoginPage(driver);
+            pageLogin.LoginSubmit("denkovski112a@yahoo.com", "acecar");
+            CostumerPage pageCostumer = new CostumerPage(driver);
+            Assert.AreEqual("Информации за корисничката сметка", pageCostumer.DokazDekaELogiran.Text, "The user is NOT logged in");
         }
     }
 }

@@ -26,6 +26,10 @@ namespace AutomationTestProject
 
         // registrirajse kopce
         public IWebElement RegistracijaKopce => driver.FindElement(By.CssSelector("a[title='Register ']"));
+
+        //element za najava na korisnik
+        public IWebElement Najava => driver.FindElement(By.CssSelector("a[title='Најавете се']"));
+
         public DomacinstvoPage DomacinstvoKlik()
         {
             Domacinstvo.Click();
@@ -36,11 +40,20 @@ namespace AutomationTestProject
             Kujna.Click();
             return new KujnaPage(driver);
         }
+        //Funkcija za registracija
         public RegistracijaPage registracijaKlik()
         {
             Registracija.Click();
             RegistracijaKopce.Click();
             return new RegistracijaPage(driver);
+        }
+
+        //Funckija za najava
+        public LoginPage NajavaClick()
+        {
+            Registracija.Click();
+            Najava.Click();
+            return new LoginPage(driver);
         }
     }
 }
