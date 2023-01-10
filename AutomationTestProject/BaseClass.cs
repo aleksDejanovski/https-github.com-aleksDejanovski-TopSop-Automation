@@ -20,6 +20,7 @@ namespace AutomationTestProject
             driver.Navigate().GoToUrl(webpage);
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+         
             
             
         }

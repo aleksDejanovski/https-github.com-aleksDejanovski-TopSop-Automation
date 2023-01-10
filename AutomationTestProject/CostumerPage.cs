@@ -26,6 +26,8 @@ namespace AutomationTestProject
         public IWebElement Vokosnicka => driver.FindElement(By.CssSelector(".button.btn-cart"));
 
 
+        public IWebElement Cookiee => driver.FindElement(By.Id("c-p-bn"));
+
         //funckija za klik na sport i rekreacija
         public void SportKlik()
         {
@@ -42,6 +44,12 @@ namespace AutomationTestProject
             Vokosnicka.Click();
             return new CartPage(driver);
         }
+        public void CookieeKlik()
+        {
+            
+            Cookiee.Click();
+        }
+        
     }
 
 

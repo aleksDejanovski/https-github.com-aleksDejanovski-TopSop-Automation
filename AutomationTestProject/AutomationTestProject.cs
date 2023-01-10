@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -98,10 +99,8 @@ namespace AutomationTestProject
             pageLogin.LoginSubmit("denkovski112a@yahoo.com", "acecar");
             CostumerPage pageCostumer = new CostumerPage(driver);
             pageCostumer.SportKlik();
-         // On Debbuger the test passes if I CLOSE THE COOKIES. TRIED BUT FOR NOW CAN NOT MAKE IT    
-        //    driver.SwitchTo().Frame("_hjRemoteVarsFrame");
-        //    wait.Until(ExpectedConditions.ElementExists(By.Id("c-p-bn"))).Click();
-        //driver.SwitchTo().DefaultContent();
+            Thread.Sleep(2000);
+            pageCostumer.CookieeKlik();
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(22));
             wait.Until(ExpectedConditions.ElementToBeClickable(pageCostumer.EMSTonerPoveke));
             pageCostumer.EMSTonerPovekeKlik();
