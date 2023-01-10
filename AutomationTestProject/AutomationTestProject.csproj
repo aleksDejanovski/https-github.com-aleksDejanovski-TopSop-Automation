@@ -61,6 +61,7 @@
     <Compile Include="AutomationTestProject.cs" />
     <Compile Include="BaseClass.cs" />
     <Compile Include="BaseTest.cs" />
+    <Compile Include="CartPage.cs" />
     <Compile Include="CostumerPage.cs" />
     <Compile Include="DomacinstvoPage.cs" />
     <Compile Include="Homepage.cs" />

@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 
 namespace AutomationTestProject
 {
@@ -9,6 +10,7 @@ namespace AutomationTestProject
     {
         public IWebDriver driver;
         string webpage = "https://www.topshop.com.mk/";
+        public WebDriverWait wait;
        
 
         [SetUp]
@@ -18,6 +20,7 @@ namespace AutomationTestProject
             driver.Navigate().GoToUrl(webpage);
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20);
+            
             
         }
         [TearDown]

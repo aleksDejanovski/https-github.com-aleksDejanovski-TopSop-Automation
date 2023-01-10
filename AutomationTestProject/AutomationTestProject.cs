@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace AutomationTestProject
 {
@@ -86,6 +88,26 @@ namespace AutomationTestProject
             pageLogin.LoginSubmit("denkovski112a@yahoo.com", "acecar");
             CostumerPage pageCostumer = new CostumerPage(driver);
             Assert.AreEqual("Информации за корисничката сметка", pageCostumer.DokazDekaELogiran.Text, "The user is NOT logged in");
+        }
+        [Test]
+        public void LoginThenAddToChart()
+        {
+            Homepage page = new Homepage(driver);
+            page.NajavaClick();
+            LoginPage pageLogin = new LoginPage(driver);
+            pageLogin.LoginSubmit("denkovski112a@yahoo.com", "acecar");
+            CostumerPage pageCostumer = new CostumerPage(driver);
+            pageCostumer.SportKlik();
+         // On Debbuger the test passes if I CLOSE THE COOKIES. TRIED BUT FOR NOW CAN NOT MAKE IT    
+        //    driver.SwitchTo().Frame("_hjRemoteVarsFrame");
+        //    wait.Until(ExpectedConditions.ElementExists(By.Id("c-p-bn"))).Click();
+        //driver.SwitchTo().DefaultContent();
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(22));
+            wait.Until(ExpectedConditions.ElementToBeClickable(pageCostumer.EMSTonerPoveke));
+            pageCostumer.EMSTonerPovekeKlik();
+            pageCostumer.KosnickaKlik();
+            CartPage pageCart = new CartPage(driver);
+            Assert.IsTrue(pageCart.SuccesMessageForCard.Text.Contains("е додаден во вашата кошничка"));
         }
     }
 }

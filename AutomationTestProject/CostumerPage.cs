@@ -14,5 +14,36 @@ namespace AutomationTestProject
         //element za dokaz deka korisnikot e logiran
         public IWebElement DokazDekaELogiran => driver.FindElement(By.CssSelector("div[class='account-box'] div[class='account-hdr account-hdr-row-one clearfix'] h2"));
 
+        //element za sport i rekreacija
+        public IWebElement SportIRekreacija => driver.FindElement(By.XPath("//span[contains(text(),'Спорт и рекреација')]"));
+
+
+
+        //Element Poveke za EMS TONER
+        public IWebElement EMSTonerPoveke => driver.FindElement(By.Id("product-collection-image-215077"));
+
+        //Element za klik na VO KOSNICKA
+        public IWebElement Vokosnicka => driver.FindElement(By.CssSelector(".button.btn-cart"));
+
+
+        //funckija za klik na sport i rekreacija
+        public void SportKlik()
+        {
+            SportIRekreacija.Click();
+        }
+        //funckija za klik na poveke za EMS TONER POVEKE
+        public void EMSTonerPovekeKlik()
+        {
+            EMSTonerPoveke.Click();
+        }
+        //klik na kosnicka
+        public CartPage KosnickaKlik()
+        {
+            Vokosnicka.Click();
+            return new CartPage(driver);
+        }
     }
+
+
+
 }
