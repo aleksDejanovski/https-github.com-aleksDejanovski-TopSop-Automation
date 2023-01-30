@@ -1,8 +1,11 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
+using System;
 
 namespace AutomationTestProject
 {
-    internal class CostumerPage
+    internal class CostumerPage : BaseClass
     {
         private IWebDriver driver;
 
@@ -36,7 +39,8 @@ namespace AutomationTestProject
         //funckija za klik na poveke za EMS TONER POVEKE
         public void EMSTonerPovekeKlik()
         {
-            EMSTonerPoveke.Click();
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(22));
+            wait.Until(ExpectedConditions.ElementToBeClickable(EMSTonerPoveke)).Click();
         }
         //klik na kosnicka
         public CartPage KosnickaKlik()
